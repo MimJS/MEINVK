@@ -79,6 +79,7 @@ export const App = () => {
         }
         //getOkUrl(token.access_token);
       } else {
+        setIsOpen(true);
         setShowError(true);
         return;
       }
@@ -141,13 +142,6 @@ export const App = () => {
                   src={
                     "https://sun1-97.userapi.com/s/v1/ig2/MkXhBsO8pHDquYG7t4oO7u9g2eLz7YesJEOD6ZuaRMmtD3psZydksiiGasV_rsetbZHTQWYZdcgfnb0x5YyFN3oO.jpg?size=200x200&quality=96&crop=66,66,524,524&ava=1"
                   }
-                  onClick={() => {
-                    if (isOpen) {
-                      setIsOpen(false);
-                    } else {
-                      setIsOpen(true);
-                    }
-                  }}
                 />
                 <span className="Block--Description">Михаил Матеевский</span>
               </div>
