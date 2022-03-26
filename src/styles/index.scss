@@ -1,0 +1,182 @@
+@import "./scheme";
+
+// Main view styles
+#Main {
+  .AlertQR {
+    .vkuiAlert__content {
+      padding: 36px;
+    }
+    .cellClass-cell-empty {
+      fill: white;
+    }
+    .title {
+      margin-top: 15px;
+      color: #414141;
+      font-size: 14px;
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+    }
+    .Alert__actions {
+      padding: 0 !important;
+    }
+    .QrCode {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  #Main--panel {
+    .Profile__Wrapper {
+      &.Profile--open {
+        .Profile__Block {
+          &:nth-child(2),
+          &:nth-child(3) {
+            min-height: calc(100% / 3 + 15px);
+          }
+          &:nth-child(1) {
+            top: 0px;
+            box-shadow: 0px 0px 10px #141414;
+          }
+          &:nth-child(2) {
+            top: calc(100% / 3 - 15px);
+            box-shadow: 0 0 10px #414141;
+          }
+          &:nth-child(3) {
+            top: calc(100% / 3 * 2 - 15px);
+          }
+        }
+      }
+      .Profile__Loading {
+        position: absolute;
+        padding: 0px 20px;
+        height: 100%;
+        width: calc(100% - 40px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .Spinner {
+          height: fit-content !important;
+          align-items: unset !important;
+          color: #b2b2b2 !important;
+        }
+        .Loading__Description {
+          margin-top: 7px;
+          color: #b2b2b2;
+          font-size: 14px;
+        }
+      }
+      .Profile__Block {
+        width: calc(100% - 40px);
+        display: flex;
+        padding: 0 20px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        transition: all 0.6s ease-in-out;
+        min-height: calc(100% / 3);
+        position: absolute;
+        top: -100%;
+        &:nth-child(1) {
+          background-color: #0177ff;
+          z-index: 3;
+          .Block--Description {
+            margin-top: 15px;
+            font-size: 21px;
+            font-weight: 500;
+            color: #fff;
+            padding: 0 7px;
+            background: rgba(245, 245, 245, 0.13);
+            border-radius: 5px;
+            text-align: center;
+          }
+        }
+        &:nth-child(2) {
+          background-color: #f2f3f5;
+          z-index: 2;
+          padding: 0 calc((100% - 300px) / 2);
+          max-width: 100%;
+          width: fit-content;
+          align-items: baseline;
+        }
+        &:nth-child(3) {
+          background-color: #e1e3e6;
+          z-index: 1;
+        }
+        .Block--Description {
+          display: block;
+        }
+        &.Block--Info {
+          .Avatar {
+            border: 2px solid white;
+          }
+        }
+        &.Block--Url {
+          .Block--Description {
+            margin-bottom: 5px;
+            font-size: 14px;
+            margin-left: 5px;
+          }
+          .Input {
+            max-width: 100%;
+            width: 300px;
+            input {
+              user-select: all;
+            }
+            .vkuiFormField__border {
+              border: 1px solid var(--field_border) !important;
+              background: var(--field_background) !important;
+            }
+          }
+          .Button {
+            max-width: 100%;
+            width: 300px;
+            margin-top: 5px;
+          }
+        }
+        &.Block--share {
+          .Block--Description {
+            font-size: 14px;
+          }
+          .Block--SocialList {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .IconButton {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              background-color: #f2f3f5;
+              width: 48px;
+              &:not(:last-child) {
+                margin-right: 7px;
+              }
+              @media (min-width: 480px) {
+                &:hover {
+                  transform: translateY(2px);
+                  transition: transform 0.15s linear;
+                }
+              }
+              &:active {
+                opacity: 0.7;
+              }
+              &.vkuiTappable--hover-background > .vkuiTappable__hoverShadow {
+                background-color: rgba(242, 243, 245, 0.35) !important;
+                transition: background-color 0.15s linear;
+              }
+              svg {
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
