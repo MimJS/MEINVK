@@ -54,11 +54,17 @@ export const App = () => {
   useEffect(() => {
     const getOkUrl = async (token) => {};
     const getDomain = async (id) => {
-      const token = await bridge.send("VKWebAppGetAuthToken", {
-        app_id: 8113115,
-        scope: "",
-      });
-      if (token.access_token) {
+      const token = await bridge
+        .send("VKWebAppGetAuthToken", {
+          app_id: 8113115,
+          scope: "",
+        })
+        .catch((e) => {
+          setIsOpen(true);
+          setShowError(true);
+          return null;
+        });
+      if (token && token.access_token) {
         const userDomain = await bridge.send("VKWebAppCallAPIMethod", {
           method: "users.get",
           request_id: "requestToken",
@@ -78,10 +84,6 @@ export const App = () => {
           return;
         }
         //getOkUrl(token.access_token);
-      } else {
-        setIsOpen(true);
-        setShowError(true);
-        return;
       }
     };
     const getData = async () => {
@@ -137,13 +139,12 @@ export const App = () => {
               className={`Profile__Wrapper ${isOpen ? "Profile--open" : ""}`}
             >
               <div className="Profile__Block Block--Info">
-                <Avatar
-                  size={72}
-                  src={
-                    "https://sun1-97.userapi.com/s/v1/ig2/MkXhBsO8pHDquYG7t4oO7u9g2eLz7YesJEOD6ZuaRMmtD3psZydksiiGasV_rsetbZHTQWYZdcgfnb0x5YyFN3oO.jpg?size=200x200&quality=96&crop=66,66,524,524&ava=1"
-                  }
-                />
-                <span className="Block--Description">Михаил Матеевский</span>
+                <Avatar size={72} src={userData ? userData.photo_100 : null} />
+                <span className="Block--Description">
+                  {userData
+                    ? userData.first_name + " " + userData.last_name
+                    : ""}
+                </span>
               </div>
               <div className="Profile__Block Block--Url">
                 <span className="Block--Description">Ссылка на меня:</span>
